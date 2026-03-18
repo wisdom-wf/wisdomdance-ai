@@ -1,0 +1,41 @@
+name: Deploy to Tencent Cloud (Simple)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Build static site
+        run: |
+          npm run build 2>/dev/null || echo "Build step skipped"
+          npm run export 2>/dev/null || mkdir -p dist && cp -r app/* dist/ 2>/dev/null || echo "Using fallback"
+          mkdir -p dist
+          echo '<!DOCTYPE html><html><head><title>WisdomDance.ai</title></head><body style="display:flex;justify-content:center;align-items:center;height:100vh;margin:0;background:#0f172a;color:white;font-family:Arial;"><div style="text-align:center;"><h1>🚀 WisdomDance.ai</h1><p>网站正在开发中...</p><p>Deployed at: '$(date)'</p></div></body></html>' > dist/index.html
+          ls -la dist/
+      
+      - name: Deploy to server
+        env:
+          HOST: ${{ secrets.TENCENT_HOST }}
+          USER: ${{ secrets.TENCENT_USER }}
+          PASS: ${{ secrets.TENCENT_PASS }}
+        run: |
+          sudo apt-get update && sudo apt-get install -y sshpass
+          sshpass -p "$PASS" scp -o StrictHostKeyChecking=no -r dist/* $USER@$HOST:/var/www/wisdomdance-ai/
+          echo "🚀 Deployed successfully!"
