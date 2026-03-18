@@ -26,6 +26,7 @@ import {
   Linkedin
 } from 'lucide-react'
 import Link from 'next/link'
+import AI超级团队 from '@/components/sections/AI超级团队'
 
 export default function Home() {
   const fadeInUp = {
@@ -44,8 +45,8 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-slate-950">
-      {/* Hero Section - sanwan.ai风格：故事化引入 */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4">
+      {/* Hero Section - 左右布局 */}
+      <section className="relative min-h-screen flex items-center overflow-hidden px-4 sm:px-6 lg:px-8">
         {/* 动态背景 */}
         <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950" />
         <div className="absolute inset-0 overflow-hidden">
@@ -53,116 +54,198 @@ export default function Home() {
           <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-l from-amber-500/10 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
         </div>
 
-        <div className="relative z-10 max-w-4xl mx-auto text-center">
-          <motion.div
-            variants={staggerContainer}
-            initial="initial"
-            animate="animate"
-          >
-            {/* 故事引入 - 类似sanwan.ai的🩼骨折引入 */}
+        <div className="relative z-10 max-w-7xl mx-auto w-full py-20">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* 左侧内容 */}
             <motion.div
-              variants={fadeInUp}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/50 border border-slate-700 mb-6"
+              variants={staggerContainer}
+              initial="initial"
+              animate="animate"
+              className="text-center lg:text-left"
             >
-              <span className="text-2xl">💼</span>
-              <span className="text-slate-300 text-sm">从华为到创业，16年技术沉淀的AI转型之路</span>
-            </motion.div>
+              {/* 故事引入 */}
+              <motion.div
+                variants={fadeInUp}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/50 border border-slate-700 mb-6"
+              >
+                <span className="text-xl">💼</span>
+                <span className="text-slate-300 text-sm">从华为到创业，16年技术沉淀的AI转型之路</span>
+              </motion.div>
 
-            {/* 主标题 */}
-            <motion.h1
-              variants={fadeInUp}
-              className="text-4xl md:text-6xl font-bold mb-6 leading-tight"
-            >
-              <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-amber-400 bg-clip-text text-transparent">
-                WisdomDance.ai
-              </span>
-            </motion.h1>
+              {/* 主标题 */}
+              <motion.h1
+                variants={fadeInUp}
+                className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+              >
+                <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-amber-400 bg-clip-text text-transparent">
+                  WisdomDance.ai
+                </span>
+              </motion.h1>
 
-            {/* 副标题 - 类似sanwan.ai的定义 */}
-            <motion.p
-              variants={fadeInUp}
-              className="text-xl md:text-2xl text-slate-300 mb-4"
-            >
-              🎯 AI+政务数字化专家 · 数据资产入表顾问
-            </motion.p>
+              {/* 副标题 */}
+              <motion.p
+                variants={fadeInUp}
+                className="text-xl sm:text-2xl text-slate-300 mb-6"
+              >
+                🎯 AI+政务数字化专家 · 数据资产入表顾问
+              </motion.p>
 
-            {/* 核心声明 - 类似sanwan.ai的强调 */}
-            <motion.div
-              variants={fadeInUp}
-              className="bg-slate-800/30 border border-slate-700 rounded-2xl p-6 mb-8 max-w-2xl mx-auto"
-            >
-              <p className="text-slate-400 text-lg leading-relaxed">
-                <span className="text-white font-semibold">16年政企项目经验</span> × 
-                <span className="text-white font-semibold"> AI 7×24小时团队</span> = 
-                <span className="text-amber-400 font-semibold"> 无限可能</span>
-              </p>
-              <p className="text-slate-500 mt-2 text-sm">
-                从华为工程师到创业公司副总，从传统IT到AI时代，我一直在探索技术与业务的融合
-              </p>
-            </motion.div>
+              {/* 核心声明 */}
+              <motion.div
+                variants={fadeInUp}
+                className="bg-slate-800/30 border border-slate-700 rounded-2xl p-6 mb-8"
+              >
+                <p className="text-slate-400 text-lg leading-relaxed">
+                  <span className="text-white font-semibold">16年政企项目经验</span> × 
+                  <span className="text-white font-semibold"> AI 7×24小时团队</span> = 
+                  <span className="text-amber-400 font-semibold"> 无限可能</span>
+                </p>
+                <p className="text-slate-500 mt-2 text-sm">
+                  从华为工程师到创业公司副总，从传统IT到AI时代，我一直在探索技术与业务的融合
+                </p>
+              </motion.div>
 
-            {/* 关键数据展示 - sanwan.ai风格的数据化 */}
-            <motion.div
-              variants={fadeInUp}
-              className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 max-w-3xl mx-auto"
-            >
-              {[
-                { emoji: '⏱️', number: '16+', label: '年工作经验' },
-                { emoji: '💰', number: '1.67亿', label: '项目交付金额' },
-                { emoji: '👥', number: '35+', label: '团队管理规模' },
-                { emoji: '🤖', number: '7', label: 'AI Agent团队' },
-              ].map((stat, index) => (
-                <div
-                  key={index}
-                  className="bg-slate-800/30 border border-slate-700 rounded-xl p-4 hover:border-indigo-500/50 transition-colors"
-                >
-                  <div className="text-2xl mb-1">{stat.emoji}</div>
-                  <div className="text-2xl md:text-3xl font-bold text-white mb-1">
-                    {stat.number}
+              {/* 关键数据展示 */}
+              <motion.div
+                variants={fadeInUp}
+                className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-10"
+              >
+                {[
+                  { emoji: '⏱️', number: '16+', label: '年工作经验' },
+                  { emoji: '💰', number: '1.67亿', label: '项目交付金额' },
+                  { emoji: '👥', number: '35+', label: '团队管理规模' },
+                  { emoji: '🤖', number: '7', label: 'AI Agent团队' },
+                ].map((stat, index) => (
+                  <div
+                    key={index}
+                    className="bg-slate-800/30 border border-slate-700 rounded-xl p-4 hover:border-indigo-500/50 transition-colors text-center lg:text-left"
+                  >
+                    <div className="text-2xl mb-1">{stat.emoji}</div>
+                    <div className="text-2xl font-bold text-white mb-1">
+                      {stat.number}
+                    </div>
+                    <div className="text-xs text-slate-500">{stat.label}</div>
                   </div>
-                  <div className="text-xs text-slate-500">{stat.label}</div>
-                </div>
-              ))}
+                ))}
+              </motion.div>
+
+              {/* CTA按钮 */}
+              <motion.div
+                variants={fadeInUp}
+                className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
+              >
+                <a
+                  href="#story"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-semibold transition-all"
+                >
+                  了解我的故事
+                  <ArrowRight className="w-5 h-5" />
+                </a>
+                <a
+                  href="#services"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-semibold transition-all border border-slate-700"
+                >
+                  查看服务能力
+                </a>
+              </motion.div>
             </motion.div>
 
-            {/* CTA按钮 */}
+            {/* 右侧图片 */}
             <motion.div
-              variants={fadeInUp}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="relative flex justify-center lg:justify-end"
             >
-              <Link
-                href="#story"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-semibold transition-all hover:shadow-lg hover:shadow-indigo-500/25"
-              >
-                了解我的故事
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-              <Link
-                href="#services"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-semibold transition-all border border-slate-700"
-              >
-                查看服务能力
-              </Link>
-            </motion.div>
-          </motion.div>
-        </div>
+              <div className="relative">
+                {/* 背景装饰 */}
+                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-3xl blur-2xl transform scale-110" />
+                
+                {/* 主图片容器 */}
+                <div className="relative w-72 h-96 sm:w-80 sm:h-[420px] lg:w-96 lg:h-[500px] rounded-3xl overflow-hidden border-4 border-slate-700/50 shadow-2xl">
+                  <img
+                    src="/images/王凡个人照片.jpg"
+                    alt="王凡"
+                    className="w-full h-full object-cover object-top"
+                  />
+                  {/* 渐变遮罩 */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-transparent to-transparent" />
+                </div>
 
-        {/* 滚动指示器 */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <div className="w-6 h-10 rounded-full border-2 border-slate-600 flex justify-center pt-2">
-            <motion.div
-              animate={{ y: [0, 8, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="w-1.5 h-1.5 bg-indigo-500 rounded-full"
-            />
+                {/* 在线状态标识 */}
+                <div className="absolute -bottom-4 -right-4 px-4 py-2 bg-green-500 rounded-full flex items-center gap-2 border-4 border-slate-950 shadow-lg">
+                  <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
+                  <span className="text-white text-sm font-medium">可预约咨询</span>
+                </div>
+
+                {/* 浮动卡片 - 经验 */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.8 }}
+                  className="absolute -left-8 top-1/4 bg-slate-800/90 backdrop-blur-sm border border-slate-700 rounded-xl p-3 shadow-xl"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="text-2xl">🏆</span>
+                    <div>
+                      <div className="text-white font-bold text-sm">16年</div>
+                      <div className="text-slate-400 text-xs">政企项目经验</div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* 浮动卡片 - AI团队 */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1 }}
+                  className="absolute -right-4 top-1/2 bg-slate-800/90 backdrop-blur-sm border border-slate-700 rounded-xl p-3 shadow-xl"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="text-2xl">🤖</span>
+                    <div>
+                      <div className="text-white font-bold text-sm">7×24小时</div>
+                      <div className="text-slate-400 text-xs">AI超级团队</div>
+                    </div>
+                  </div>
+                </motion.div>
+
+                {/* 浮动卡片 - 项目金额 */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 1.2 }}
+                  className="absolute left-4 -bottom-4 bg-slate-800/90 backdrop-blur-sm border border-slate-700 rounded-xl p-3 shadow-xl"
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="text-2xl">💎</span>
+                    <div>
+                      <div className="text-white font-bold text-sm">1.67亿+</div>
+                      <div className="text-slate-400 text-xs">项目交付金额</div>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
           </div>
-        </motion.div>
+        </div>
       </section>
+
+      {/* 滚动指示器 */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
+      >
+        <div className="w-6 h-10 rounded-full border-2 border-slate-600 flex justify-center pt-2">
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity }}
+            className="w-1.5 h-1.5 bg-indigo-500 rounded-full"
+          />
+        </div>
+      </motion.div>
 
       {/* 故事时间线 - sanwan.ai风格：图标+关键词 */}
       <section id="story" className="py-20 px-4 bg-slate-900/50">
@@ -337,82 +420,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* AI团队展示 - sanwan.ai风格 */}
-      <section className="py-20 px-4 bg-slate-900/50">
-        <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-400 text-sm mb-4">
-              <Brain className="w-4 h-4" />
-              <span>AI 团队</span>
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              7×24小时 AI 超级团队
-            </h2>
-            <p className="text-slate-400 max-w-2xl mx-auto">
-              这不是一个普通的团队，这是一个由 AI 驱动的超级团队。
-              7个专业 Agent，不间断工作，持续学习进化。
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {[
-              { emoji: '🎯', name: '总指挥', role: '战略官', desc: '统筹全局、制定策略', status: '在线' },
-              { emoji: '✍️', name: '笔杆子', role: '内容官', desc: '文案创作、公众号运营', status: '在线' },
-              { emoji: '🧠', name: '参谋', role: '智囊', desc: '分析建议、决策支持', status: '在线' },
-              { emoji: '📈', name: '运营官', role: '增长官', desc: '数据分析、用户增长', status: '在线' },
-              { emoji: '🔄', name: '进化官', role: '学习官', desc: '技能学习、知识更新', status: '在线' },
-              { emoji: '💹', name: '交易官', role: '财经官', desc: '市场分析、投资决策', status: '在线' },
-              { emoji: '🌐', name: '社区官', role: '连接官', desc: '社群运营、对外合作', status: '在线' },
-            ].map((agent, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                className="bg-slate-800/30 border border-slate-700 rounded-xl p-4 hover:border-indigo-500/30 transition-all text-center group"
-              >
-                <div className="text-3xl mb-2 group-hover:scale-110 transition-transform">{agent.emoji}</div>
-                <h3 className="text-white font-semibold mb-1">{agent.name}</h3>
-                <p className="text-indigo-400 text-xs mb-2">{agent.role}</p>
-                <p className="text-slate-500 text-xs">{agent.desc}</p>
-                <div className="mt-3 inline-flex items-center gap-1 px-2 py-1 bg-green-500/10 rounded-full">
-                  <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-                  <span className="text-green-400 text-xs">{agent.status}</span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* 团队数据 */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-12 bg-slate-800/30 border border-slate-700 rounded-2xl p-6"
-          >
-            <div className="grid grid-cols-3 gap-6 text-center">
-              <div>
-                <div className="text-2xl font-bold text-white mb-1">1,247</div>
-                <div className="text-slate-500 text-sm">累计工作小时</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-white mb-1">328</div>
-                <div className="text-slate-500 text-sm">完成任务数</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-white mb-1">45</div>
-                <div className="text-slate-500 text-sm">学习新技能</div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
+      {/* AI团队展示 - 升级版 */}
+      <AI超级团队 />
 
       {/* 案例展示 - 故事化 */}
       <section className="py-20 px-4">
@@ -700,6 +709,23 @@ export default function Home() {
               无论是数据资产入表、AI+政务数字化，还是技术咨询，
               我的AI团队都随时准备为您服务
             </p>
+            
+            {/* 二维码区域 */}
+            <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-8">
+              <div className="bg-white rounded-2xl p-4">
+                <img
+                  src="/images/二维码.jpg"
+                  alt="微信二维码"
+                  className="w-40 h-40 rounded-xl"
+                />
+              </div>
+              <div className="text-left">
+                <p className="text-white font-semibold mb-2">扫码添加微信</p>
+                <p className="text-slate-400 text-sm">或直接联系：</p>
+                <p className="text-indigo-400 font-medium">wfanang@gmail.com</p>
+              </div>
+            </div>
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="mailto:wfanang@gmail.com"
