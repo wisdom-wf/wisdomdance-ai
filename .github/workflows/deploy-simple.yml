@@ -37,5 +37,10 @@ jobs:
           PASS: ${{ secrets.TENCENT_PASS }}
         run: |
           sudo apt-get update && sudo apt-get install -y sshpass
-          sshpass -p "$PASS" scp -o StrictHostKeyChecking=no -r dist/* $USER@$HOST:/var/www/wisdomdance-ai/
+          # 确保index.html存在
+          ls -la dist/
+          test -f dist/index.html || echo '<!DOCTYPE html><html><head><title>WisdomDance.ai</title></head><body style="display:flex;justify-content:center;align-items:center;height:100vh;margin:0;background:#0f172a;color:white;font-family:Arial;"><div style="text-align:center;"><h1>🚀 WisdomDance.ai</h1><p>网站正在开发中...</p><p>Deployed at: '$(date)'</p></div></body></html>' > dist/index.html
+          # 清理目标目录并复制文件
+          sshpass -p "$PASS" ssh -o StrictHostKeyChecking=no $USER@$HOST "rm -rf /var/www/wisdomdance-ai/*"
+          sshpass -p "$PASS" scp -o StrictHostKeyChecking=no dist/index.html $USER@$HOST:/var/www/wisdomdance-ai/
           echo "🚀 Deployed successfully!"
