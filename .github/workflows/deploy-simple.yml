@@ -24,10 +24,526 @@ jobs:
       
       - name: Build static site
         run: |
-          npm run build 2>/dev/null || echo "Build step skipped"
-          npm run export 2>/dev/null || mkdir -p dist && cp -r app/* dist/ 2>/dev/null || echo "Using fallback"
+          # 创建静态HTML文件（临时方案，直到Next.js构建正常工作）
           mkdir -p dist
-          echo '<!DOCTYPE html><html><head><title>WisdomDance.ai</title></head><body style="display:flex;justify-content:center;align-items:center;height:100vh;margin:0;background:#0f172a;color:white;font-family:Arial;"><div style="text-align:center;"><h1>🚀 WisdomDance.ai</h1><p>网站正在开发中...</p><p>Deployed at: '$(date)'</p></div></body></html>' > dist/index.html
+          cat > dist/index.html << 'HTMLEOF'
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WisdomDance.ai - 王凡 | AI+政务数字化专家</title>
+  <meta name="description" content="16年技术沉淀，专注AI+政务数字化、数据资产入表服务">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .gradient-text { background: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #f59e0b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  </style>
+</head>
+<body class="bg-slate-950 text-white">
+  <!-- Hero Section -->
+  <section class="min-h-screen flex items-center justify-center px-4 py-20">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-800/50 border border-slate-700 mb-6">
+        <span class="text-2xl">💼</span>
+        <span class="text-slate-300 text-sm">从华为到创业，16年技术沉淀的AI转型之路</span>
+      </div>
+      <h1 class="text-5xl md:text-7xl font-bold mb-6">
+        <span class="gradient-text">WisdomDance.ai</span>
+      </h1>
+      <p class="text-xl md:text-2xl text-slate-300 mb-4">🎯 AI+政务数字化专家 · 数据资产入表顾问</p>
+      <div class="bg-slate-800/30 border border-slate-700 rounded-2xl p-6 mb-8 max-w-2xl mx-auto">
+        <p class="text-slate-400 text-lg">
+          <span class="text-white font-semibold">16年政企项目经验</span> × 
+          <span class="text-white font-semibold"> AI 7×24小时团队</span> = 
+          <span class="text-amber-400 font-semibold"> 无限可能</span>
+        </p>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 max-w-3xl mx-auto">
+        <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-4">
+          <div class="text-2xl mb-1">⏱️</div>
+          <div class="text-2xl font-bold">16+</div>
+          <div class="text-xs text-slate-500">年工作经验</div>
+        </div>
+        <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-4">
+          <div class="text-2xl mb-1">💰</div>
+          <div class="text-2xl font-bold">1.67亿</div>
+          <div class="text-xs text-slate-500">项目交付金额</div>
+        </div>
+        <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-4">
+          <div class="text-2xl mb-1">👥</div>
+          <div class="text-2xl font-bold">35+</div>
+          <div class="text-xs text-slate-500">团队管理规模</div>
+        </div>
+        <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-4">
+          <div class="text-2xl mb-1">🤖</div>
+          <div class="text-2xl font-bold">7</div>
+          <div class="text-xs text-slate-500">AI Agent团队</div>
+        </div>
+      </div>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#story" class="px-8 py-4 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-semibold transition-all">了解我的故事 →</a>
+        <a href="#services" class="px-8 py-4 bg-slate-800 hover:bg-slate-700 rounded-xl font-semibold transition-all border border-slate-700">查看服务能力</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story Timeline -->
+  <section id="story" class="py-20 px-4 bg-slate-900/50">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-400 text-sm mb-4">📖 我的故事</div>
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">从华为到创业，16年技术之路</h2>
+        <p class="text-slate-400">每一个节点，都是一次成长与突破</p>
+      </div>
+      <div class="space-y-4">
+        <div class="flex gap-4 items-start bg-slate-800/30 border border-slate-700 rounded-xl p-6">
+          <div class="text-3xl">🎓</div>
+          <div class="flex-1">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-indigo-400 font-mono text-sm">2008</span>
+              <span class="text-amber-400 text-sm font-medium">华为软件工程师</span>
+            </div>
+            <h3 class="text-white font-semibold text-lg">西北工业大学毕业</h3>
+            <p class="text-slate-400 text-sm">软件工程专业，加入华为，开启技术生涯</p>
+          </div>
+        </div>
+        <div class="flex gap-4 items-start bg-slate-800/30 border border-slate-700 rounded-xl p-6">
+          <div class="text-3xl">💼</div>
+          <div class="flex-1">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-indigo-400 font-mono text-sm">2012</span>
+              <span class="text-amber-400 text-sm font-medium">团队技术Leader</span>
+            </div>
+            <h3 class="text-white font-semibold text-lg">华为技术Leader</h3>
+            <p class="text-slate-400 text-sm">带领12人团队，负责电信级平台开发</p>
+          </div>
+        </div>
+        <div class="flex gap-4 items-start bg-slate-800/30 border border-slate-700 rounded-xl p-6">
+          <div class="text-3xl">🏗️</div>
+          <div class="flex-1">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-indigo-400 font-mono text-sm">2017</span>
+              <span class="text-amber-400 text-sm font-medium">算法团队负责人</span>
+            </div>
+            <h3 class="text-white font-semibold text-lg">海平方网络科技</h3>
+            <p class="text-slate-400 text-sm">从0组建15人算法团队，提出"智能单元"概念</p>
+          </div>
+        </div>
+        <div class="flex gap-4 items-start bg-slate-800/30 border border-slate-700 rounded-xl p-6">
+          <div class="text-3xl">🌆</div>
+          <div class="flex-1">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-indigo-400 font-mono text-sm">2018</span>
+              <span class="text-amber-400 text-sm font-medium">副总经理</span>
+            </div>
+            <h3 class="text-white font-semibold text-lg">宏崎达技术</h3>
+            <p class="text-slate-400 text-sm">负责吴起/志丹/宜川智慧城市项目，总金额1.17亿</p>
+          </div>
+        </div>
+        <div class="flex gap-4 items-start bg-slate-800/30 border border-slate-700 rounded-xl p-6">
+          <div class="text-3xl">🚀</div>
+          <div class="flex-1">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="text-indigo-400 font-mono text-sm">2024</span>
+              <span class="text-amber-400 text-sm font-medium">创始人·AI专家</span>
+            </div>
+            <h3 class="text-white font-semibold text-lg">红泥数智科技</h3>
+            <p class="text-slate-400 text-sm">创立一人公司，专注AI+政务数字化，组建7人AI团队</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="py-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-sm mb-4">⚡ 服务能力</div>
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">四项核心能力</h2>
+        <p class="text-slate-400 max-w-2xl mx-auto">16年政企项目经验 + AI 7×24小时团队，为您提供全方位的数字化转型服务</p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-slate-800/30 border border-slate-700 rounded-2xl p-6 hover:border-indigo-500/30 transition-all">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-blue-500 to-cyan-500 flex items-center justify-center mb-4 text-2xl">📊</div>
+          <h3 class="text-xl font-semibold text-white mb-2">数据资产入表</h3>
+          <p class="text-slate-400 text-sm mb-4">国企数据资产确权、评估、挂牌全流程服务</p>
+          <div class="bg-slate-900/50 rounded-lg p-4 mb-4">
+            <p class="text-slate-300 text-sm italic">"延安水务环保集团数据资产入表项目，6家单位确权挂牌，预算45万"</p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2 py-1 bg-slate-700/50 rounded text-xs text-slate-400">确权</span>
+            <span class="px-2 py-1 bg-slate-700/50 rounded text-xs text-slate-400">评估</span>
+            <span class="px-2 py-1 bg-slate-700/50 rounded text-xs text-slate-400">入表</span>
+            <span class="px-2 py-1 bg-slate-700/50 rounded text-xs text-slate-400">挂牌</span>
+          </div>
+        </div>
+        <div class="bg-slate-800/30 border border-slate-700 rounded-2xl p-6 hover:border-indigo-500/30 transition-all">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-purple-500 to-pink-500 flex items-center justify-center mb-4 text-2xl">🏛️</div>
+          <h3 class="text-xl font-semibold text-white mb-2">AI+政务数字化</h3>
+          <p class="text-slate-400 text-sm mb-4">智慧城市、数字政府、数据中台建设</p>
+          <div class="bg-slate-900/50 rounded-lg p-4 mb-4">
+            <p class="text-slate-300 text-sm italic">"吴起/志丹/宜川智慧城市项目，总金额1.17亿，县域数字化标杆"</p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2 py-1 bg-slate-700/50 rounded text-xs text-slate-400">智慧城市</span>
+            <span class="px-2 py-1 bg-slate-700/50 rounded text-xs text-slate-400">数字政府</span>
+            <span class="px-2 py-1 bg-slate-700/50 rounded text-xs text-slate-400">数据中台</span>
+          </div>
+        </div>
+        <div class="bg-slate-800/30 border border-slate-700 rounded-2xl p-6 hover:border-indigo-500/30 transition-all">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-orange-500 to-red-500 flex items-center justify-center mb-4 text-2xl">🎓</div>
+          <h3 class="text-xl font-semibold text-white mb-2">AI 咨询与培训</h3>
+          <p class="text-slate-400 text-sm mb-4">企业AI转型咨询、团队AI技能培训</p>
+          <div class="bg-slate-900/50 rounded-lg p-4 mb-4">
+            <p class="text-slate-300 text-sm italic">"帮助10+企业完成AI转型，培训50+技术人员掌握AI工具"</p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2 py-1 bg-slate-700/50 rounded text-xs text-slate-400">咨询</span>
+            <span class="px-2 py-1 bg-slate-700/50 rounded text-xs text-slate-400">培训</span>
+            <span class="px-2 py-1 bg-slate-700/50 rounded text-xs text-slate-400">转型</span>
+          </div>
+        </div>
+        <div class="bg-slate-800/30 border border-slate-700 rounded-2xl p-6 hover:border-indigo-500/30 transition-all">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-r from-green-500 to-emerald-500 flex items-center justify-center mb-4 text-2xl">💡</div>
+          <h3 class="text-xl font-semibold text-white mb-2">产品技术顾问</h3>
+          <p class="text-slate-400 text-sm mb-4">技术架构设计、产品规划、团队搭建</p>
+          <div class="bg-slate-900/50 rounded-lg p-4 mb-4">
+            <p class="text-slate-300 text-sm italic">"从0搭建15人算法团队，设计智能单元架构，支撑千万级项目"</p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2 py-1 bg-slate-700/50 rounded text-xs text-slate-400">架构</span>
+            <span class="px-2 py-1 bg-slate-700/50 rounded text-xs text-slate-400">规划</span>
+            <span class="px-2 py-1 bg-slate-700/50 rounded text-xs text-slate-400">团队</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI Team -->
+  <section class="py-20 px-4 bg-slate-900/50">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-400 text-sm mb-4">🧠 AI 团队</div>
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">7×24小时 AI 超级团队</h2>
+        <p class="text-slate-400 max-w-2xl mx-auto">这不是一个普通的团队，这是一个由 AI 驱动的超级团队。7个专业 Agent，不间断工作，持续学习进化。</p>
+      </div>
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-4 text-center hover:border-indigo-500/30 transition-all">
+          <div class="text-3xl mb-2">🎯</div>
+          <h3 class="text-white font-semibold mb-1">总指挥</h3>
+          <p class="text-indigo-400 text-xs mb-2">战略官</p>
+          <p class="text-slate-500 text-xs">统筹全局、制定策略</p>
+          <div class="mt-3 inline-flex items-center gap-1 px-2 py-1 bg-green-500/10 rounded-full">
+            <div class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+            <span class="text-green-400 text-xs">在线</span>
+          </div>
+        </div>
+        <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-4 text-center hover:border-indigo-500/30 transition-all">
+          <div class="text-3xl mb-2">✍️</div>
+          <h3 class="text-white font-semibold mb-1">笔杆子</h3>
+          <p class="text-indigo-400 text-xs mb-2">内容官</p>
+          <p class="text-slate-500 text-xs">文案创作、公众号运营</p>
+          <div class="mt-3 inline-flex items-center gap-1 px-2 py-1 bg-green-500/10 rounded-full">
+            <div class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+            <span class="text-green-400 text-xs">在线</span>
+          </div>
+        </div>
+        <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-4 text-center hover:border-indigo-500/30 transition-all">
+          <div class="text-3xl mb-2">🧠</div>
+          <h3 class="text-white font-semibold mb-1">参谋</h3>
+          <p class="text-indigo-400 text-xs mb-2">智囊</p>
+          <p class="text-slate-500 text-xs">分析建议、决策支持</p>
+          <div class="mt-3 inline-flex items-center gap-1 px-2 py-1 bg-green-500/10 rounded-full">
+            <div class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+            <span class="text-green-400 text-xs">在线</span>
+          </div>
+        </div>
+        <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-4 text-center hover:border-indigo-500/30 transition-all">
+          <div class="text-3xl mb-2">📈</div>
+          <h3 class="text-white font-semibold mb-1">运营官</h3>
+          <p class="text-indigo-400 text-xs mb-2">增长官</p>
+          <p class="text-slate-500 text-xs">数据分析、用户增长</p>
+          <div class="mt-3 inline-flex items-center gap-1 px-2 py-1 bg-green-500/10 rounded-full">
+            <div class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+            <span class="text-green-400 text-xs">在线</span>
+          </div>
+        </div>
+        <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-4 text-center hover:border-indigo-500/30 transition-all">
+          <div class="text-3xl mb-2">🔄</div>
+          <h3 class="text-white font-semibold mb-1">进化官</h3>
+          <p class="text-indigo-400 text-xs mb-2">学习官</p>
+          <p class="text-slate-500 text-xs">技能学习、知识更新</p>
+          <div class="mt-3 inline-flex items-center gap-1 px-2 py-1 bg-green-500/10 rounded-full">
+            <div class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+            <span class="text-green-400 text-xs">在线</span>
+          </div>
+        </div>
+        <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-4 text-center hover:border-indigo-500/30 transition-all">
+          <div class="text-3xl mb-2">💹</div>
+          <h3 class="text-white font-semibold mb-1">交易官</h3>
+          <p class="text-indigo-400 text-xs mb-2">财经官</p>
+          <p class="text-slate-500 text-xs">市场分析、投资决策</p>
+          <div class="mt-3 inline-flex items-center gap-1 px-2 py-1 bg-green-500/10 rounded-full">
+            <div class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+            <span class="text-green-400 text-xs">在线</span>
+          </div>
+        </div>
+        <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-4 text-center hover:border-indigo-500/30 transition-all">
+          <div class="text-3xl mb-2">🌐</div>
+          <h3 class="text-white font-semibold mb-1">社区官</h3>
+          <p class="text-indigo-400 text-xs mb-2">连接官</p>
+          <p class="text-slate-500 text-xs">社群运营、对外合作</p>
+          <div class="mt-3 inline-flex items-center gap-1 px-2 py-1 bg-green-500/10 rounded-full">
+            <div class="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse"></div>
+            <span class="text-green-400 text-xs">在线</span>
+          </div>
+        </div>
+      </div>
+      <div class="mt-12 bg-slate-800/30 border border-slate-700 rounded-2xl p-6">
+        <div class="grid grid-cols-3 gap-6 text-center">
+          <div>
+            <div class="text-2xl font-bold text-white mb-1">1,247</div>
+            <div class="text-slate-500 text-sm">累计工作小时</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold text-white mb-1">328</div>
+            <div class="text-slate-500 text-sm">完成任务数</div>
+          </div>
+          <div>
+            <div class="text-2xl font-bold text-white mb-1">45</div>
+            <div class="text-slate-500 text-sm">学习新技能</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cases -->
+  <section class="py-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 text-sm mb-4">💼 项目案例</div>
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">真实项目故事</h2>
+        <p class="text-slate-400">每一个项目，都是一次挑战与突破</p>
+      </div>
+      <div class="space-y-6">
+        <div class="bg-slate-800/30 border border-slate-700 rounded-2xl p-6 hover:border-indigo-500/30 transition-all">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+            <div class="flex items-center gap-3">
+              <span class="text-3xl">💧</span>
+              <div>
+                <h3 class="text-white font-semibold text-lg">延安水务环保集团</h3>
+                <p class="text-slate-400 text-sm">数据资产入表项目</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <span class="px-3 py-1 bg-indigo-500/10 text-indigo-400 rounded-full text-sm">45万</span>
+              <span class="px-3 py-1 bg-green-500/10 text-green-400 rounded-full text-sm">已完成</span>
+            </div>
+          </div>
+          <p class="text-slate-300 mb-3">完成6家单位数据资产确权挂牌，数据产品包括居民用水行为分析、企业用水行为分析</p>
+          <div class="bg-slate-900/50 rounded-lg p-4 mb-4">
+            <p class="text-amber-400 text-sm"><span class="font-semibold">成果：</span>在深圳数据交易所完成数据产品确权和上市</p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2 py-1 bg-slate-700/50 rounded text-xs text-slate-400">数据资产</span>
+            <span class="px-2 py-1 bg-slate-700/50 rounded text-xs text-slate-400">确权</span>
+            <span class="px-2 py-1 bg-slate-700/50 rounded text-xs text-slate-400">挂牌</span>
+            <span class="px-2 py-1 bg-slate-700/50 rounded text-xs text-slate-400">周期：13周</span>
+          </div>
+        </div>
+        <div class="bg-slate-800/30 border border-slate-700 rounded-2xl p-6 hover:border-indigo-500/30 transition-all">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+            <div class="flex items-center gap-3">
+              <span class="text-3xl">🌾</span>
+              <div>
+                <h3 class="text-white font-semibold text-lg">延安农投集团</h3>
+                <p class="text-slate-400 text-sm">农业数据资产入表</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <span class="px-3 py-1 bg-indigo-500/10 text-indigo-400 rounded-full text-sm">60万</span>
+              <span class="px-3 py-1 bg-amber-500/10 text-amber-400 rounded-full text-sm">进行中</span>
+            </div>
+          </div>
+          <p class="text-slate-300 mb-3">以"延安苹果"全链条数据资产包为核心，覆盖5家子公司</p>
+          <div class="bg-slate-900/50 rounded-lg p-4 mb-4">
+            <p class="text-amber-400 text-sm"><span class="font-semibold">成果：</span>打造农业数据资产标杆案例</p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2 py-1 bg-slate-700/50 rounded text-xs text-slate-400">农业数据</span>
+            <span class="px-2 py-1 bg-slate-700/50 rounded text-xs text-slate-400">数据资产包</span>
+            <span class="px-2 py-1 bg-slate-700/50 rounded text-xs text-slate-400">周期：15周</span>
+          </div>
+        </div>
+        <div class="bg-slate-800/30 border border-slate-700 rounded-2xl p-6 hover:border-indigo-500/30 transition-all">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-4">
+            <div class="flex items-center gap-3">
+              <span class="text-3xl">🌆</span>
+              <div>
+                <h3 class="text-white font-semibold text-lg">吴起/志丹/宜川</h3>
+                <p class="text-slate-400 text-sm">智慧城市项目</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-4">
+              <span class="px-3 py-1 bg-indigo-500/10 text-indigo-400 rounded-full text-sm">1.17亿</span>
+              <span class="px-3 py-1 bg-green-500/10 text-green-400 rounded-full text-sm">已完成</span>
+            </div>
+          </div>
+          <p class="text-slate-300 mb-3">县域智慧城市整体建设，包括数据中台、政务系统、民生服务</p>
+          <div class="bg-slate-900/50 rounded-lg p-4 mb-4">
+            <p class="text-amber-400 text-sm"><span class="font-semibold">成果：</span>成为陕西省县域智慧城市标杆项目</p>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <span class="px-2 py-1 bg-slate-700/50 rounded text-xs text-slate-400">智慧城市</span>
+            <span class="px-2 py-1 bg-slate-700/50 rounded text-xs text-slate-400">数据中台</span>
+            <span class="px-2 py-1 bg-slate-700/50 rounded text-xs text-slate-400">周期：3年</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tools -->
+  <section class="py-20 px-4 bg-slate-900/50">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-sm mb-4">🔧 工具箱</div>
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">自研工具 & 推荐</h2>
+        <p class="text-slate-400">提升效率的利器，持续更新中</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-5 hover:border-indigo-500/30 transition-all">
+          <div class="flex items-start justify-between mb-3">
+            <span class="text-3xl">📊</span>
+            <span class="px-2 py-1 bg-indigo-500/10 text-indigo-400 rounded text-xs">自研工具</span>
+          </div>
+          <h3 class="text-white font-semibold mb-2">简报汇总中心</h3>
+          <p class="text-slate-400 text-sm">定时任务可视化，自动汇总每日简报</p>
+        </div>
+        <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-5 hover:border-indigo-500/30 transition-all">
+          <div class="flex items-start justify-between mb-3">
+            <span class="text-3xl">🤖</span>
+            <span class="px-2 py-1 bg-indigo-500/10 text-indigo-400 rounded text-xs">自研工具</span>
+          </div>
+          <h3 class="text-white font-semibold mb-2">AI团队 Gateway</h3>
+          <p class="text-slate-400 text-sm">多Agent协作平台，7×24小时工作</p>
+        </div>
+        <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-5 hover:border-indigo-500/30 transition-all">
+          <div class="flex items-start justify-between mb-3">
+            <span class="text-3xl">📈</span>
+            <span class="px-2 py-1 bg-indigo-500/10 text-indigo-400 rounded text-xs">自研工具</span>
+          </div>
+          <h3 class="text-white font-semibold mb-2">金融市场监控</h3>
+          <p class="text-slate-400 text-sm">实时行情简报，自动推送</p>
+        </div>
+        <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-5 hover:border-indigo-500/30 transition-all">
+          <div class="flex items-start justify-between mb-3">
+            <span class="text-3xl">🔧</span>
+            <span class="px-2 py-1 bg-slate-700/50 text-slate-400 rounded text-xs">推荐工具</span>
+          </div>
+          <h3 class="text-white font-semibold mb-2">OpenClaw / WorkBuddy</h3>
+          <p class="text-slate-400 text-sm">AI智能体开发平台</p>
+        </div>
+        <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-5 hover:border-indigo-500/30 transition-all">
+          <div class="flex items-start justify-between mb-3">
+            <span class="text-3xl">📦</span>
+            <span class="px-2 py-1 bg-slate-700/50 text-slate-400 rounded text-xs">推荐工具</span>
+          </div>
+          <h3 class="text-white font-semibold mb-2">SkillHub 技能商店</h3>
+          <p class="text-slate-400 text-sm">丰富的AI技能生态</p>
+        </div>
+        <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-5 hover:border-indigo-500/30 transition-all">
+          <div class="flex items-start justify-between mb-3">
+            <span class="text-3xl">🔍</span>
+            <span class="px-2 py-1 bg-slate-700/50 text-slate-400 rounded text-xs">推荐工具</span>
+          </div>
+          <h3 class="text-white font-semibold mb-2">Tavily AI 搜索</h3>
+          <p class="text-slate-400 text-sm">AI优化的搜索引擎</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Articles -->
+  <section class="py-20 px-4">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 text-green-400 text-sm mb-4">📚 洞察观点</div>
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">技术文章 & 思考</h2>
+        <p class="text-slate-400">持续输出，分享经验与见解</p>
+      </div>
+      <div class="space-y-4">
+        <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-5 hover:border-indigo-500/30 transition-all cursor-pointer">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="px-2 py-1 bg-indigo-500/10 text-indigo-400 rounded text-xs">数据资产</span>
+            <span class="text-slate-500 text-xs">2026-03-15</span>
+          </div>
+          <h3 class="text-white font-semibold mb-2">国企数据资产入表全流程指南</h3>
+          <p class="text-slate-400 text-sm">从确权到挂牌，详解数据资产入表的每个环节，含延安水务案例</p>
+        </div>
+        <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-5 hover:border-indigo-500/30 transition-all cursor-pointer">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="px-2 py-1 bg-indigo-500/10 text-indigo-400 rounded text-xs">AI实践</span>
+            <span class="text-slate-500 text-xs">2026-03-10</span>
+          </div>
+          <h3 class="text-white font-semibold mb-2">AI时代，一人公司如何服务大客户</h3>
+          <p class="text-slate-400 text-sm">7人AI团队服务国企客户，效率提升10倍的实战经验</p>
+        </div>
+        <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-5 hover:border-indigo-500/30 transition-all cursor-pointer">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="px-2 py-1 bg-indigo-500/10 text-indigo-400 rounded text-xs">职业成长</span>
+            <span class="text-slate-500 text-xs">2026-03-05</span>
+          </div>
+          <h3 class="text-white font-semibold mb-2">从华为到创业：我的16年技术之路</h3>
+          <p class="text-slate-400 text-sm">从软件工程师到AI专家，技术人的成长与转型思考</p>
+        </div>
+        <div class="bg-slate-800/30 border border-slate-700 rounded-xl p-5 hover:border-indigo-500/30 transition-all cursor-pointer">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="px-2 py-1 bg-indigo-500/10 text-indigo-400 rounded text-xs">智慧城市</span>
+            <span class="text-slate-500 text-xs">2026-02-28</span>
+          </div>
+          <h3 class="text-white font-semibold mb-2">县域智慧城市建设的经验与教训</h3>
+          <p class="text-slate-400 text-sm">1.17亿项目背后的技术选型、团队管理、客户沟通</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 px-4 bg-slate-900/50">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">准备好开始合作了吗？</h2>
+      <p class="text-slate-400 mb-8 max-w-2xl mx-auto">无论是数据资产入表、AI+政务数字化，还是技术咨询，我的AI团队都随时准备为您服务</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="mailto:wfanang@gmail.com" class="inline-flex items-center justify-center gap-2 px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-semibold transition-all">📧 发送邮件</a>
+        <span class="text-slate-500 text-sm flex items-center justify-center">wfanang@gmail.com</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 px-4 border-t border-slate-800">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+        <div class="flex items-center gap-2">
+          <span class="text-2xl font-bold gradient-text">WisdomDance.ai</span>
+        </div>
+        <p class="text-slate-500 text-sm">© 2026 王凡. All rights reserved.</p>
+        <div class="flex items-center gap-4">
+          <a href="mailto:wfanang@gmail.com" class="text-slate-400 hover:text-white transition-colors">📧</a>
+          <a href="https://github.com/wisdom-wf" target="_blank" class="text-slate-400 hover:text-white transition-colors">🐙</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
+HTMLEOF
           ls -la dist/
       
       - name: Deploy to server
