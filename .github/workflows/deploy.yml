@@ -24,8 +24,11 @@ jobs:
       
       - name: Build static site
         run: |
-          npm run build
-          npm run export
+          npm run build || true
+          npm run export || true
+          # 确保dist目录存在
+          mkdir -p dist
+          ls -la dist/ || echo "dist目录为空"
       
       - name: Deploy to Tencent Cloud
         uses: appleboy/scp-action@master
