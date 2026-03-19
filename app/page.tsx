@@ -27,6 +27,7 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import AI超级团队 from '@/components/sections/AI超级团队'
+import AI安全专区 from '@/components/sections/AI安全专区'
 
 export default function Home() {
   const fadeInUp = {
@@ -422,6 +423,9 @@ export default function Home() {
 
       {/* AI团队展示 - 升级版 */}
       <AI超级团队 />
+
+      {/* AI安全专区 - 类龙虾安全风格 */}
+      <AI安全专区 />
 
       {/* 案例展示 - 故事化 */}
       <section className="py-20 px-4">
