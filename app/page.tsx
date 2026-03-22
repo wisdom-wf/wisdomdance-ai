@@ -26,8 +26,10 @@ import {
   Linkedin
 } from 'lucide-react'
 import Link from 'next/link'
+import Header from '@/components/Header'
+import Logo from '@/components/Logo'
 import AI超级团队 from '@/components/sections/AI超级团队'
-import AI安全专区 from '@/components/sections/AI安全专区'
+import AISecurityZone from '@/components/sections/AISecurityZone'
 
 export default function Home() {
   const fadeInUp = {
@@ -45,14 +47,18 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-slate-950">
+    <main className="min-h-screen bg-[#020617]">
+      <Header />
       {/* Hero Section - 左右布局 */}
-      <section className="relative min-h-screen flex items-center overflow-hidden px-4 sm:px-6 lg:px-8">
-        {/* 动态背景 */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-slate-900 to-indigo-950" />
+      <section className="relative min-h-[calc(100vh-80px)] flex items-center overflow-hidden px-4 sm:px-6 lg:px-8">
+        {/* 动态背景 - Red Mud风格深蓝背景 */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#020617] via-[#0f172a] to-[#1e1b4b]" />
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-r from-indigo-500/10 to-transparent rounded-full blur-3xl animate-pulse" />
-          <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-l from-amber-500/10 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+          {/* 蓝色光晕 */}
+          <div className="absolute -top-1/2 -left-1/2 w-full h-full bg-gradient-to-r from-blue-600/10 to-transparent rounded-full blur-3xl animate-pulse" />
+          <div className="absolute -bottom-1/2 -right-1/2 w-full h-full bg-gradient-to-l from-cyan-500/10 to-transparent rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+          {/* 红色强调光晕 */}
+          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-br from-red-600/5 to-transparent rounded-full blur-3xl" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto w-full py-20">
@@ -76,11 +82,9 @@ export default function Home() {
               {/* 主标题 */}
               <motion.h1
                 variants={fadeInUp}
-                className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+                className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6 leading-tight"
               >
-                <span className="bg-gradient-to-r from-indigo-400 via-purple-400 to-amber-400 bg-clip-text text-transparent">
-                  WisdomDance.ai
-                </span>
+                <span className="text-slate-200">红泥数智科技</span>
               </motion.h1>
 
               {/* 副标题 */}
@@ -88,18 +92,22 @@ export default function Home() {
                 variants={fadeInUp}
                 className="text-xl sm:text-2xl text-slate-300 mb-6"
               >
-                🎯 AI+政务数字化专家 · 数据资产入表顾问
+                <span className="text-blue-400">AI+政务数字化专家</span> · <span className="text-cyan-400">数据资产入表顾问</span>
               </motion.p>
 
               {/* 核心声明 */}
               <motion.div
                 variants={fadeInUp}
-                className="bg-slate-800/30 border border-slate-700 rounded-2xl p-6 mb-8"
+                className="bg-slate-800/30 border border-blue-500/30 rounded-2xl p-6 mb-8"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(30,41,59,0.5) 0%, rgba(15,23,42,0.5) 100%)',
+                  boxShadow: '0 4px 30px rgba(59,130,246,0.1)'
+                }}
               >
                 <p className="text-slate-400 text-lg leading-relaxed">
                   <span className="text-white font-semibold">16年政企项目经验</span> × 
                   <span className="text-white font-semibold"> AI 7×24小时团队</span> = 
-                  <span className="text-amber-400 font-semibold"> 无限可能</span>
+                  <span className="text-red-400 font-semibold"> 无限可能</span>
                 </p>
                 <p className="text-slate-500 mt-2 text-sm">
                   从华为工程师到创业公司副总，从传统IT到AI时代，我一直在探索技术与业务的融合
@@ -113,7 +121,7 @@ export default function Home() {
               >
                 {[
                   { emoji: '⏱️', number: '16+', label: '年工作经验' },
-                  { emoji: '💰', number: '1.67亿', label: '项目交付金额' },
+                  { emoji: '💰', number: '1.8亿', label: '项目交付金额' },
                   { emoji: '👥', number: '35+', label: '团队管理规模' },
                   { emoji: '🤖', number: '7', label: 'AI Agent团队' },
                 ].map((stat, index) => (
@@ -137,14 +145,22 @@ export default function Home() {
               >
                 <a
                   href="#story"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-semibold transition-all"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-white transition-all overflow-hidden relative group"
+                  style={{
+                    background: 'linear-gradient(135deg, #dc2626 0%, #b91c1c 50%, #991b1b 100%)',
+                    boxShadow: '0 4px 20px rgba(220,38,38,0.4), inset 0 1px 0 rgba(255,255,255,0.2)'
+                  }}
                 >
-                  了解我的故事
-                  <ArrowRight className="w-5 h-5" />
+                  <span className="relative z-10">了解我的故事</span>
+                  <ArrowRight className="w-5 h-5 relative z-10" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-700 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
                 <a
                   href="#services"
-                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-xl font-semibold transition-all border border-slate-700"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-800/80 hover:bg-slate-700 text-white rounded-xl font-semibold transition-all border border-blue-500/30"
+                  style={{
+                    boxShadow: '0 4px 20px rgba(59,130,246,0.1)'
+                  }}
                 >
                   查看服务能力
                 </a>
@@ -174,7 +190,13 @@ export default function Home() {
                 </div>
 
                 {/* 在线状态标识 */}
-                <div className="absolute -bottom-4 -right-4 px-4 py-2 bg-green-500 rounded-full flex items-center gap-2 border-4 border-slate-950 shadow-lg">
+                <div 
+                  className="absolute -bottom-4 -right-4 px-4 py-2 rounded-full flex items-center gap-2 border-4 border-[#020617] shadow-lg"
+                  style={{
+                    background: 'linear-gradient(135deg, #dc2626 0%, #b91c1c 100%)',
+                    boxShadow: '0 4px 20px rgba(220,38,38,0.4)'
+                  }}
+                >
                   <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
                   <span className="text-white text-sm font-medium">可预约咨询</span>
                 </div>
@@ -221,7 +243,7 @@ export default function Home() {
                   <div className="flex items-center gap-2">
                     <span className="text-2xl">💎</span>
                     <div>
-                      <div className="text-white font-bold text-sm">1.67亿+</div>
+                      <div className="text-white font-bold text-sm">1.8亿+</div>
                       <div className="text-slate-400 text-xs">项目交付金额</div>
                     </div>
                   </div>
@@ -248,8 +270,8 @@ export default function Home() {
         </div>
       </motion.div>
 
-      {/* 故事时间线 - sanwan.ai风格：图标+关键词 */}
-      <section id="story" className="py-20 px-4 bg-slate-900/50">
+      {/* 故事时间线 - Red Mud风格 */}
+      <section id="story" className="py-20 px-4" style={{ background: 'linear-gradient(180deg, #0f172a 0%, #020617 100%)' }}>
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -257,12 +279,12 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-500/10 text-indigo-400 text-sm mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-sm mb-4 border border-blue-500/20">
               <BookOpen className="w-4 h-4" />
               <span>我的故事</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              从华为到创业，16年技术之路
+              从华为到创业，<span className="text-red-400">16年</span>技术之路
             </h2>
             <p className="text-slate-400">
               每一个节点，都是一次成长与突破
@@ -318,8 +340,8 @@ export default function Home() {
                 <div className="text-3xl">{item.emoji}</div>
                 <div className="flex-1">
                   <div className="flex items-center gap-3 mb-2">
-                    <span className="text-indigo-400 font-mono text-sm">{item.year}</span>
-                    <span className="text-amber-400 text-sm font-medium">{item.highlight}</span>
+                    <span className="text-blue-400 font-mono text-sm">{item.year}</span>
+                    <span className="text-red-400 text-sm font-medium">{item.highlight}</span>
                   </div>
                   <h3 className="text-white font-semibold text-lg mb-1">{item.title}</h3>
                   <p className="text-slate-400 text-sm">{item.desc}</p>
@@ -330,8 +352,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 核心能力 - sanwan.ai风格：四点并列+故事化案例 */}
-      <section id="services" className="py-20 px-4">
+      {/* 核心能力 - Red Mud风格 */}
+      <section id="services" className="py-20 px-4" style={{ background: '#020617' }}>
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -339,12 +361,12 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-sm mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-500/10 text-red-400 text-sm mb-4 border border-red-500/20">
               <Zap className="w-4 h-4" />
               <span>服务能力</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              四项核心能力
+              四项<span className="text-blue-400">核心能力</span>
             </h2>
             <p className="text-slate-400 max-w-2xl mx-auto">
               16年政企项目经验 + AI 7×24小时团队，为您提供全方位的数字化转型服务
@@ -359,7 +381,7 @@ export default function Home() {
                 title: '数据资产入表',
                 desc: '国企数据资产确权、评估、挂牌全流程服务',
                 story: '延安水务环保集团数据资产入表项目，6家单位确权挂牌，预算45万',
-                color: 'from-blue-500 to-cyan-500',
+                color: 'from-red-500 to-red-600',
                 tags: ['确权', '评估', '入表', '挂牌']
               },
               {
@@ -368,7 +390,7 @@ export default function Home() {
                 title: 'AI+政务数字化',
                 desc: '智慧城市、数字政府、数据中台建设',
                 story: '吴起/志丹/宜川智慧城市项目，总金额1.17亿，县域数字化标杆',
-                color: 'from-purple-500 to-pink-500',
+                color: 'from-blue-500 to-cyan-500',
                 tags: ['智慧城市', '数字政府', '数据中台']
               },
               {
@@ -377,7 +399,7 @@ export default function Home() {
                 title: 'AI 咨询与培训',
                 desc: '企业AI转型咨询、团队AI技能培训',
                 story: '帮助10+企业完成AI转型，培训50+技术人员掌握AI工具',
-                color: 'from-orange-500 to-red-500',
+                color: 'from-cyan-500 to-blue-500',
                 tags: ['咨询', '培训', '转型']
               },
               {
@@ -386,7 +408,7 @@ export default function Home() {
                 title: '产品技术顾问',
                 desc: '技术架构设计、产品规划、团队搭建',
                 story: '从0搭建15人算法团队，设计智能单元架构，支撑千万级项目',
-                color: 'from-green-500 to-emerald-500',
+                color: 'from-indigo-500 to-purple-500',
                 tags: ['架构', '规划', '团队']
               }
             ].map((service, index) => (
@@ -425,10 +447,10 @@ export default function Home() {
       <AI超级团队 />
 
       {/* AI安全专区 - 类龙虾安全风格 */}
-      <AI安全专区 />
+      <AISecurityZone />
 
-      {/* 案例展示 - 故事化 */}
-      <section className="py-20 px-4">
+      {/* 案例展示 - Red Mud风格 */}
+      <section id="projects" className="py-20 px-4" style={{ background: 'linear-gradient(180deg, #020617 0%, #0f172a 100%)' }}>
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -436,12 +458,12 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-500/10 text-purple-400 text-sm mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-sm mb-4 border border-blue-500/20">
               <Briefcase className="w-4 h-4" />
               <span>项目案例</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              真实项目故事
+              真实<span className="text-red-400">项目故事</span>
             </h2>
             <p className="text-slate-400">
               每一个项目，都是一次挑战与突破
@@ -535,8 +557,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 工具箱 - sanwan.ai技能商店风格 */}
-      <section className="py-20 px-4 bg-slate-900/50">
+      {/* 工具箱 - Red Mud风格 */}
+      <section className="py-20 px-4" style={{ background: '#0f172a' }}>
         <div className="max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -544,12 +566,12 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-sm mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 text-cyan-400 text-sm mb-4 border border-cyan-500/20">
               <Code className="w-4 h-4" />
               <span>工具箱</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              自研工具 & 推荐
+              自研工具 & <span className="text-cyan-400">推荐</span>
             </h2>
             <p className="text-slate-400">
               提升效率的利器，持续更新中
@@ -621,8 +643,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 技术文章 - sanwan.ai风格 */}
-      <section className="py-20 px-4">
+      {/* 技术文章 - Red Mud风格 */}
+      <section className="py-20 px-4" style={{ background: '#020617' }}>
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -630,12 +652,12 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 text-green-400 text-sm mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 text-green-400 text-sm mb-4 border border-green-500/20">
               <BookOpen className="w-4 h-4" />
               <span>洞察观点</span>
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              技术文章 & 思考
+              技术文章 & <span className="text-green-400">思考</span>
             </h2>
             <p className="text-slate-400">
               持续输出，分享经验与见解
@@ -664,7 +686,7 @@ export default function Home() {
               },
               {
                 title: '县域智慧城市建设的经验与教训',
-                desc: '1.17亿项目背后的技术选型、团队管理、客户沟通',
+                desc: '1.8亿项目背后的技术选型、团队管理、客户沟通',
                 tag: '智慧城市',
                 date: '2026-02-28'
               }
@@ -699,7 +721,7 @@ export default function Home() {
       </section>
 
       {/* CTA区域 */}
-      <section className="py-20 px-4 bg-slate-900/50">
+      <section id="contact" className="py-20 px-4" style={{ background: 'linear-gradient(180deg, #0f172a 0%, #020617 100%)' }}>
         <div className="max-w-4xl mx-auto text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -716,27 +738,60 @@ export default function Home() {
             
             {/* 二维码区域 */}
             <div className="flex flex-col md:flex-row items-center justify-center gap-8 mb-8">
-              <div className="bg-white rounded-2xl p-4">
-                <img
-                  src="/images/二维码.jpg"
-                  alt="微信二维码"
-                  className="w-40 h-40 rounded-xl"
-                />
+              {/* 左侧：动态Logo */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="flex flex-col items-center gap-4"
+              >
+                <Logo size="xl" showText={true} className="bg-transparent" />
+                <p className="text-slate-500 text-sm">红泥数智科技</p>
+              </motion.div>
+              
+              {/* 中间：连接线（桌面端显示） */}
+              <div className="hidden md:flex flex-col items-center gap-2">
+                <div className="w-px h-16 bg-gradient-to-b from-transparent via-blue-500/50 to-transparent" />
+                <motion.div
+                  animate={{ x: [0, 5, 0] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                  className="text-blue-400"
+                >
+                  <ArrowRight className="w-5 h-5" />
+                </motion.div>
+                <div className="w-px h-16 bg-gradient-to-b from-transparent via-blue-500/50 to-transparent" />
               </div>
-              <div className="text-left">
-                <p className="text-white font-semibold mb-2">扫码添加微信</p>
-                <p className="text-slate-400 text-sm">或直接联系：</p>
-                <p className="text-indigo-400 font-medium">wfanang@gmail.com</p>
+              
+              {/* 右侧：二维码 */}
+              <div className="flex flex-col md:flex-row items-center gap-6">
+                <div className="bg-white rounded-2xl p-4 shadow-2xl shadow-blue-500/10">
+                  <img
+                    src="/images/二维码.jpg"
+                    alt="微信二维码"
+                    className="w-40 h-40 rounded-xl"
+                  />
+                </div>
+                <div className="text-center md:text-left">
+                  <p className="text-white font-semibold mb-2">扫码添加微信</p>
+                  <p className="text-slate-400 text-sm">或直接联系：</p>
+                  <p className="text-indigo-400 font-medium">wfanang@gmail.com</p>
+                </div>
               </div>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="mailto:wfanang@gmail.com"
-                className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-indigo-600 hover:bg-indigo-500 text-white rounded-xl font-semibold transition-all"
+                className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl font-semibold text-white transition-all overflow-hidden relative group"
+                style={{
+                  background: 'linear-gradient(135deg, #dc2626 0%, #b91c1c 50%, #991b1b 100%)',
+                  boxShadow: '0 4px 20px rgba(220,38,38,0.4), inset 0 1px 0 rgba(255,255,255,0.2)'
+                }}
               >
-                <Mail className="w-5 h-5" />
-                发送邮件
+                <Mail className="w-5 h-5 relative z-10" />
+                <span className="relative z-10">发送邮件</span>
+                <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-700 opacity-0 group-hover:opacity-100 transition-opacity" />
               </a>
               <span className="text-slate-500 text-sm flex items-center justify-center">
                 wfanang@gmail.com
@@ -747,22 +802,24 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-4 border-t border-slate-800">
+      <footer className="py-12 px-4 border-t border-blue-500/20" style={{ background: '#020617' }}>
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-2">
-              <span className="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-amber-400 bg-clip-text text-transparent">
-                WisdomDance.ai
+              <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 via-cyan-400 to-white bg-clip-text text-transparent">
+                RED MUD
               </span>
+              <span className="text-slate-500 text-sm">|</span>
+              <span className="text-slate-400 text-sm">红泥数智科技</span>
             </div>
             <p className="text-slate-500 text-sm">
               © 2026 王凡. All rights reserved.
             </p>
             <div className="flex items-center gap-4">
-              <a href="mailto:wfanang@gmail.com" className="text-slate-400 hover:text-white transition-colors">
+              <a href="mailto:wfanang@gmail.com" className="text-slate-400 hover:text-blue-400 transition-colors">
                 <Mail className="w-5 h-5" />
               </a>
-              <a href="https://github.com/wisdom-wf" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors">
+              <a href="https://github.com/wisdom-wf" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-blue-400 transition-colors">
                 <Github className="w-5 h-5" />
               </a>
             </div>
