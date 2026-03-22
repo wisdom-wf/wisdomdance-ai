@@ -304,7 +304,7 @@ export default function Home() {
                 emoji: '💼', 
                 year: '2012', 
                 title: '华为技术Leader', 
-                desc: '带领12人团队，负责电信级平台开发',
+                desc: '华为10年历练，技术沉淀深厚，为后续经历打下坚实基础',
                 highlight: '团队技术Leader'
               },
               { 
@@ -318,7 +318,7 @@ export default function Home() {
                 emoji: '🌆', 
                 year: '2018', 
                 title: '宏崎达技术', 
-                desc: '负责吴起/志丹/宜川智慧城市项目，总金额1.8亿',
+                desc: '接手并壮大研发队伍50多人，手搓数据中台为智慧城市构筑核心组件',
                 highlight: '副总经理'
               },
               { 
