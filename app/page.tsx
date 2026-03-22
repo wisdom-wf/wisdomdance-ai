@@ -318,7 +318,7 @@ export default function Home() {
                 emoji: '🌆', 
                 year: '2018', 
                 title: '宏崎达技术', 
-                desc: '负责吴起/志丹/宜川智慧城市项目，总金额1.17亿',
+                desc: '负责吴起/志丹/宜川智慧城市项目，总金额1.8亿',
                 highlight: '副总经理'
               },
               { 
@@ -389,7 +389,7 @@ export default function Home() {
                 emoji: '🏛️',
                 title: 'AI+政务数字化',
                 desc: '智慧城市、数字政府、数据中台建设',
-                story: '吴起/志丹/宜川智慧城市项目，总金额1.17亿，县域数字化标杆',
+                story: '吴起/志丹/宜川智慧城市项目，总金额1.8亿，县域数字化标杆',
                 color: 'from-blue-500 to-cyan-500',
                 tags: ['智慧城市', '数字政府', '数据中台']
               },
@@ -498,7 +498,7 @@ export default function Home() {
                 client: '吴起/志丹/宜川',
                 emoji: '🌆',
                 title: '智慧城市项目',
-                amount: '1.17亿',
+                amount: '1.8亿',
                 period: '3年',
                 desc: '县域智慧城市整体建设，包括数据中台、政务系统、民生服务',
                 result: '成为陕西省县域智慧城市标杆项目',
