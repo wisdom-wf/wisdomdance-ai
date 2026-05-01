@@ -1,5 +1,89 @@
 # 变更日志 (Changelog)
 
+## [v1.2.0] 2026-05-01 - 数据资产核心业务全面升级
+
+### 🔐 安全加固
+- 移除所有明文密码（deploy.sh / DEPLOY.md / CHANGELOG.md），改用环境变量
+- 新增 `.env.example` 模板
+- `.gitignore` 添加 tar.gz 排除规则
+
+### 🏗️ 代码架构重构
+- `page.tsx` 从 831 行拆分为 10 个独立组件
+  - `Hero.tsx` — 首屏（个人照片+浮动卡片+CTA）
+  - `StoryTimeline.tsx` — 故事时间线
+  - `DataAssetHub.tsx` — **数据资产核心模块（4个Tab）**
+  - `AI超级团队.tsx` — 7个Agent展示
+  - `AISecurityZone.tsx` — AI安全专区
+  - `Tools.tsx` — 工具箱
+  - `Articles.tsx` — 技术文章+公众号引流
+  - `CTA.tsx` — 联系区域
+  - `Footer.tsx` — 页脚
+- 删除重复的中文命名组件 `AI安全专区.tsx`
+- 清理 12 个无用 lucide-react import
+- 修复 `Header.tsx` 多余 `</div>` 和 DOM 嵌套错误
+
+### 📊 数据资产核心模块（DataAssetHub）
+基于 `/Volumes/works/延安华链经营` 200+ 实战文档提炼，新增顶级 Tab 模块：
+
+- **业务总览**：4大核心业务（数据资产入表 / 公共数据授权 / 数字化诊断 / AI+政务）+ 3种合作模式（项目制/平台制/顾问制）
+- **六步法**：数据资源盘点→合规评估→成本归集→价值评估→入表记账→产品上架，每步带标准化交付物
+- **行业案例**：8行业 Tab 切换（水务✅ / 农业🔄 / 旅游🔍 / 交通🔍 / 能源🔄 / 城投🔍 / 邮政🔍 / 医疗🔄），含交付物和状态标记
+- **公共数据授权**：10模块体系 + "数据可用不可见"技术架构 + 收益分配（市政府40%+数据方20%+运营方40%）+ 4个标准数据产品
+- 顶部数据条：8+行业 / 15+国企 / 6步流程 / 深圳数据交易所挂牌
+
+### 📝 技术文章板块
+- 重构为 6 篇基于真实项目经验的文章
+- 新增公众号引流区：`redmud6.jpg` 二维码 + 标签云
+- 二维码点击放大弹窗（手机扫码友好）
+
+### 🔗 导航与锚点
+- Header 导航更新：服务能力→数据资产(#data-asset)，项目案例→联系我们(#contact)
+- Hero CTA 按钮 #services→#data-asset
+- AI超级团队 section 添加 `id="ai-team"`
+- AISecurityZone section 添加 `id="security"`
+
+### 🔧 CI/CD 修复
+- 删除废弃的 `deploy-simple.yml`
+- `deploy.yml`：移除 `|| true`，统一部署路径到 `/var/www/wisdomdance`
+- `ci.yml`：移除 lint 的 `|| true`，让构建失败真正阻断流水线
+- Nginx root 路径修正：`/var/www/wisdomdance/dist` → `/var/www/wisdomdance`
+
+### 📁 文件变更
+```
+new file:   .env.example
+new file:   components/sections/DataAssetHub.tsx
+new file:   components/sections/Hero.tsx
+new file:   components/sections/StoryTimeline.tsx
+new file:   components/sections/Services.tsx (重写)
+new file:   components/sections/Projects.tsx (重写)
+new file:   components/sections/Articles.tsx (重写)
+new file:   components/sections/Methodology.tsx (已合并入DataAssetHub)
+new file:   components/sections/DataAuthorization.tsx (已合并入DataAssetHub)
+new file:   components/sections/CTA.tsx
+new file:   components/sections/Footer.tsx
+new file:   public/images/redmud6.jpg
+deleted:    .github/workflows/deploy-simple.yml
+deleted:    components/sections/AI安全专区.tsx
+modified:   app/page.tsx (831行→35行)
+modified:   components/Header.tsx
+modified:   components/sections/AI超级团队.tsx
+modified:   components/sections/AISecurityZone.tsx
+modified:   .github/workflows/deploy.yml
+modified:   .github/workflows/ci.yml
+modified:   deploy.sh
+modified:   DEPLOY.md
+modified:   CHANGELOG.md
+modified:   README.md
+modified:   .gitignore
+```
+
+### 🚀 部署信息
+- **服务器**：ubuntu@43.153.213.134
+- **部署目录**：/var/www/wisdomdance
+- **访问地址**：https://wisdomdance.cn
+
+---
+
 ## [2026-03-19] - 新增：AI安全专区模块（类龙虾安全风格）
 
 ### ✨ 新增功能
