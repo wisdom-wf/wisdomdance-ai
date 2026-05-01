@@ -106,7 +106,7 @@ export default function Articles() {
               <div className="flex-shrink-0">
                 <div className="bg-white rounded-2xl p-3 shadow-xl">
                   <img
-                    src="/images/二维码.jpg"
+                    src="/images/redmud6.jpg"
                     alt="红泥数智公众号"
                     className="w-36 h-36 rounded-xl"
                   />
