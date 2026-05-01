@@ -1,7 +1,8 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import { BookOpen, ExternalLink } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { useState } from 'react'
+import { BookOpen, X } from 'lucide-react'
 
 const articles = [
   {
@@ -43,6 +44,7 @@ const articles = [
 ]
 
 export default function Articles() {
+  const [showQR, setShowQR] = useState(false)
   return (
     <>
       <section className="py-20 px-4" style={{ background: '#020617' }}>
@@ -102,15 +104,19 @@ export default function Articles() {
             className="bg-gradient-to-r from-green-500/5 to-emerald-500/5 border border-green-500/20 rounded-2xl p-8"
           >
             <div className="flex flex-col md:flex-row items-center gap-8">
-              {/* 二维码 */}
+              {/* 二维码 - 点击放大 */}
               <div className="flex-shrink-0">
-                <div className="bg-white rounded-2xl p-3 shadow-xl">
+                <button
+                  onClick={() => setShowQR(true)}
+                  className="bg-white rounded-2xl p-3 shadow-xl hover:shadow-2xl hover:scale-105 transition-all cursor-pointer group"
+                >
                   <img
                     src="/images/redmud6.jpg"
                     alt="红泥数智公众号"
                     className="w-36 h-36 rounded-xl"
                   />
-                </div>
+                  <p className="text-slate-500 text-xs mt-2 group-hover:text-green-600 transition-colors">点击放大 · 扫码关注</p>
+                </button>
               </div>
 
               {/* 文字 */}
@@ -134,6 +140,40 @@ export default function Articles() {
           </motion.div>
         </div>
       </section>
+
+      {/* 二维码放大弹窗 */}
+      <AnimatePresence>
+        {showQR && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            onClick={() => setShowQR(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              className="bg-white rounded-3xl p-6 shadow-2xl max-w-sm w-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-bold text-slate-800">📱 扫码关注「红泥数智」</h3>
+                <button onClick={() => setShowQR(false)} className="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center transition-colors">
+                  <X className="w-4 h-4 text-slate-600" />
+                </button>
+              </div>
+              <img
+                src="/images/redmud6.jpg"
+                alt="红泥数智公众号"
+                className="w-full rounded-2xl"
+              />
+              <p className="text-center text-slate-500 text-sm mt-4">微信扫一扫 · 获取更多数据资产实战干货</p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   )
 }
