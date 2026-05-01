@@ -3,10 +3,7 @@
 import Header from '@/components/Header'
 import Hero from '@/components/sections/Hero'
 import StoryTimeline from '@/components/sections/StoryTimeline'
-import Services from '@/components/sections/Services'
-import Methodology from '@/components/sections/Methodology'
-import Projects from '@/components/sections/Projects'
-import DataAuthorization from '@/components/sections/DataAuthorization'
+import DataAssetHub from '@/components/sections/DataAssetHub'
 import AI超级团队 from '@/components/sections/AI超级团队'
 import AISecurityZone from '@/components/sections/AISecurityZone'
 import Tools from '@/components/sections/Tools'
@@ -20,10 +17,7 @@ export default function Home() {
       <Header />
       <Hero />
       <StoryTimeline />
-      <Services />
-      <Methodology />
-      <Projects />
-      <DataAuthorization />
+      <DataAssetHub />
       <AI超级团队 />
       <AISecurityZone />
       <Tools />
