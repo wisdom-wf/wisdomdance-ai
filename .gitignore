@@ -40,5 +40,9 @@ next-env.d.ts
 *.swp
 *.swo
 
+# Deploy artifacts
+deploy.tar.gz
+*.tar.gz
+
 # OS
 Thumbs.db

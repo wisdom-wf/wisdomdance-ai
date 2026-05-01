@@ -5,68 +5,55 @@
 ### 方式1：自动部署（推荐）
 
 ```bash
+# 设置环境变量（不要在脚本中硬编码密码）
+export SERVER_IP="your-server-ip"
+export SERVER_USER="ubuntu"
+export SERVER_PASS="your-password"
+
 # 在项目根目录执行
-npm run build
-tar -czf deploy.tar.gz -C dist .
-
-# 上传并部署
-sshpass -p "w00135950F" scp -o StrictHostKeyChecking=no deploy.tar.gz ubuntu@43.153.213.134:/tmp/
-sshpass -p "w00135950F" ssh -o StrictHostKeyChecking=no ubuntu@43.153.213.134 "sudo rm -rf /var/www/wisdomdance/* && sudo tar -xzf /tmp/deploy.tar.gz -C /var/www/wisdomdance/ && sudo chown -R www-data:www-data /var/www/wisdomdance/"
-```
-
-### 方式2：使用部署脚本
-
-```bash
-# 执行自动部署脚本
 ./deploy.sh
 ```
 
-## 📋 服务器信息
+### 方式2：手动部署
 
-| 项目 | 值 |
-|------|-----|
-| 服务器IP | 43.153.213.134 |
-| 用户名 | ubuntu |
-| 密码 | w00135950F |
-| 部署目录 | /var/www/wisdomdance |
-| Nginx配置 | /etc/nginx/sites-enabled/wisdomdance-ai |
+```bash
+# 1. 构建
+npm run build
+
+# 2. 打包
+tar -czf deploy.tar.gz -C dist .
+
+# 3. 上传（使用SSH Key推荐，或sshpass）
+scp deploy.tar.gz ubuntu@your-server:/tmp/
+
+# 4. 解压部署
+ssh ubuntu@your-server "sudo rm -rf /var/www/wisdomdance/* && sudo tar -xzf /tmp/deploy.tar.gz -C /var/www/wisdomdance/ && sudo chown -R www-data:www-data /var/www/wisdomdance/"
+```
+
+## 📋 服务器配置
+
+| 项目 | 说明 |
+|------|------|
+| 部署目录 | `/var/www/wisdomdance` |
+| Nginx配置 | `/etc/nginx/sites-enabled/wisdomdance-ai` |
 | 网站地址 | https://wisdomdance.cn |
 
-## 🔧 手动部署步骤
+> ⚠️ 服务器IP、用户名、密码请从环境变量或密码管理器获取，**不要硬编码在文档中**。
 
-### 1. 构建项目
-```bash
-cd /Users/wisdom/WorkBuddy/Claw/wisdomdance-ai
-npm run build
-```
+## 🔧 GitHub Actions CI/CD
 
-### 2. 打包
-```bash
-tar -czf deploy.tar.gz -C dist .
-```
+项目已配置GitHub Actions自动部署，push到main分支会自动触发。
 
-### 3. 上传到服务器
-```bash
-sshpass -p "w00135950F" scp -o StrictHostKeyChecking=no deploy.tar.gz ubuntu@43.153.213.134:/tmp/
-```
-
-### 4. 解压部署
-```bash
-sshpass -p "w00135950F" ssh -o StrictHostKeyChecking=no ubuntu@43.153.213.134 "sudo rm -rf /var/www/wisdomdance/* && sudo tar -xzf /tmp/deploy.tar.gz -C /var/www/wisdomdance/ && sudo chown -R www-data:www-data /var/www/wisdomdance/"
-```
-
-### 5. 重启Nginx（如需要）
-```bash
-sshpass -p "w00135950F" ssh -o StrictHostKeyChecking=no ubuntu@43.153.213.134 "sudo nginx -t && sudo systemctl reload nginx"
-```
+需要在GitHub仓库Settings → Secrets中配置：
+- `TENCENT_HOST`: 服务器IP
+- `TENCENT_USER`: SSH用户名
+- `TENCENT_SSH_KEY`: SSH私钥
 
 ## 🔄 回滚操作
 
-如果需要回滚到上一个版本：
-
 ```bash
-# 从Git历史恢复
-sshpass -p "w00135950F" ssh -o StrictHostKeyChecking=no ubuntu@43.153.213.134 "sudo cp -r /var/www/wisdomdance /var/www/wisdomdance-backup-$(date +%Y%m%d)"
+# 服务器上备份当前版本
+ssh ubuntu@your-server "sudo cp -r /var/www/wisdomdance /var/www/wisdomdance-backup-$(date +%Y%m%d)"
 ```
 
 ## 🐛 常见问题
@@ -82,8 +69,3 @@ sshpass -p "w00135950F" ssh -o StrictHostKeyChecking=no ubuntu@43.153.213.134 "s
 ### 3. 部署后无变化
 **原因**：Nginx根目录配置错误
 **解决**：检查Nginx配置中的 `root` 路径是否为 `/var/www/wisdomdance`
-
-## 📞 联系方式
-
-如有部署问题，请联系：
-- 邮箱：wfanang@gmail.com

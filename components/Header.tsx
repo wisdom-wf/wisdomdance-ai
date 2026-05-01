@@ -130,47 +130,47 @@ export default function Header() {
                 />
               </motion.a>
             </div>
-            </div>
           </div>
 
-        {/* Mobile Menu */}
-        <AnimatePresence>
-          {isMobileMenuOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="md:hidden bg-slate-950/98 backdrop-blur-md border-t border-slate-800"
-            >
-              <nav className="flex flex-col p-4 gap-2">
-                {navItems.map((item, index) => (
+          {/* Mobile Menu */}
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3 }}
+                className="md:hidden bg-slate-950/98 backdrop-blur-md border-t border-slate-800"
+              >
+                <nav className="flex flex-col p-4 gap-2">
+                  {navItems.map((item, index) => (
+                    <motion.a
+                      key={index}
+                      href={item.href}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                      onClick={() => setIsMobileMenuOpen(false)}
+                      className="px-4 py-3 text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-lg transition-colors"
+                    >
+                      {item.label}
+                    </motion.a>
+                  ))}
                   <motion.a
-                    key={index}
-                    href={item.href}
+                    href="#contact"
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
+                    transition={{ delay: navItems.length * 0.1 }}
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="px-4 py-3 text-slate-300 hover:text-white hover:bg-slate-800/50 rounded-lg transition-colors"
+                    className="mt-2 px-4 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg font-semibold text-center"
                   >
-                    {item.label}
+                    预约咨询
                   </motion.a>
-                ))}
-                <motion.a
-                  href="#contact"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: navItems.length * 0.1 }}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className="mt-2 px-4 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg font-semibold text-center"
-                >
-                  预约咨询
-                </motion.a>
-              </nav>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                </nav>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </motion.header>
 
       {/* Spacer for fixed header */}

@@ -24,13 +24,10 @@ jobs:
         run: npm ci
       
       - name: Lint check
-        run: npm run lint -- --yes || true
+        run: npm run lint
       
       - name: Build test
         run: npm run build
-      
-      - name: Export static files
-        run: npm run export
       
       - name: Upload build artifact
         uses: actions/upload-artifact@v4

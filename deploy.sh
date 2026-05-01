@@ -1,5 +1,10 @@
 #!/bin/bash
 # 自动部署脚本
+# 使用前请设置环境变量：
+#   export SERVER_IP="your-server-ip"
+#   export SERVER_USER="ubuntu"
+#   export SERVER_PASS="your-password"
+#   export DEPLOY_DIR="/var/www/wisdomdance"
 
 set -e
 
@@ -11,11 +16,11 @@ BLUE='\033[0;34m'
 RED='\033[0;31m'
 NC='\033[0m' # No Color
 
-# 服务器配置
-SERVER_IP="43.153.213.134"
-SERVER_USER="ubuntu"
-SERVER_PASS="w00135950F"
-DEPLOY_DIR="/var/www/wisdomdance"
+# 服务器配置 - 从环境变量读取
+SERVER_IP="${SERVER_IP:?请设置 SERVER_IP 环境变量}"
+SERVER_USER="${SERVER_USER:-ubuntu}"
+SERVER_PASS="${SERVER_PASS:?请设置 SERVER_PASS 环境变量}"
+DEPLOY_DIR="${DEPLOY_DIR:-/var/www/wisdomdance}"
 
 # 1. 构建项目
 echo -e "${BLUE}📦 步骤1: 构建项目...${NC}"
@@ -58,4 +63,4 @@ echo -e "${GREEN}✅ 部署成功${NC}"
 rm -f deploy.tar.gz
 
 echo -e "${GREEN}🎉 部署完成！${NC}"
-echo -e "${BLUE}🌐 访问地址: https://wisdomdance.cn${NC}"
+echo -e "${BLUE}🌐 请访问你的网站验证${NC}"
