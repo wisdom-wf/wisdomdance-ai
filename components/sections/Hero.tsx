@@ -127,7 +127,7 @@ export default function Hero() {
             <div className="absolute inset-0 bg-gradient-to-r from-red-600 to-red-700 opacity-0 group-hover:opacity-100 transition-opacity" />
           </a>
           <a
-            href="#services"
+            href="#data-asset"
             className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-800/80 hover:bg-slate-700 text-white rounded-xl font-semibold transition-all border border-blue-500/30"
             style={{
               boxShadow: '0 4px 20px rgba(59,130,246,0.1)'

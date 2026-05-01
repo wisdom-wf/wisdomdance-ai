@@ -424,7 +424,7 @@ export default function AI超级团队() {
   const [activeTab, setActiveTab] = useState<"overview" | "workflows">("overview");
 
   return (
-    <section className="py-20 px-4 bg-slate-900/50">
+    <section id="ai-team" className="py-20 px-4 bg-slate-900/50">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div

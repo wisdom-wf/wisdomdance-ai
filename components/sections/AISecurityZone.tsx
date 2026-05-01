@@ -69,7 +69,7 @@ export default function AI安全专区() {
   return (
     <>
       {/* AI安全专区主区域 */}
-      <section className="py-20 px-4 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
+      <section id="security" className="py-20 px-4 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950">
         <div className="max-w-6xl mx-auto">
           {/* 标题区 */}
           <motion.div

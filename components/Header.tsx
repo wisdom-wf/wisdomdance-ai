@@ -6,10 +6,10 @@ import { Menu, X } from 'lucide-react'
 
 const navItems = [
   { label: '我的故事', href: '#story' },
-  { label: '服务能力', href: '#services' },
+  { label: '数据资产', href: '#data-asset' },
   { label: 'AI团队', href: '#ai-team' },
   { label: '安全防护', href: '#security' },
-  { label: '项目案例', href: '#projects' },
+  { label: '联系我们', href: '#contact' },
 ]
 
 export default function Header() {
