@@ -115,6 +115,7 @@ export default function Header() {
             <div className="hidden md:block">
               <motion.a
                 href="#contact"
+                onClick={(e) => { e.preventDefault(); window.Tawk_API?.maximize() }}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="relative inline-flex items-center gap-2 px-6 py-2.5 rounded-xl font-semibold text-white overflow-hidden group"
@@ -158,10 +159,10 @@ export default function Header() {
                   ))}
                   <motion.a
                     href="#contact"
+                    onClick={(e) => { e.preventDefault(); window.Tawk_API?.maximize(); setIsMobileMenuOpen(false) }}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: navItems.length * 0.1 }}
-                    onClick={() => setIsMobileMenuOpen(false)}
                     className="mt-2 px-4 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg font-semibold text-center"
                   >
                     预约咨询

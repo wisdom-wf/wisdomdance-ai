@@ -1,5 +1,22 @@
 # 变更日志 (Changelog)
 
+## [v1.3.0] 2026-05-13 - Tawk.to 在线客服系统接入
+
+### 💬 在线客服
+- 新增 `TawktoScript.tsx` — Tawk.to SDK 注入组件（PropertyId: 6a0438a00379c21c34d88b80/1jog7qcps）
+- 接入右下角在线客服聊天入口
+- Header「预约咨询」按钮点击直接打开 Tawk.to 聊天窗口（桌面端+移动端均生效）
+- 移除旧的 anchor 跳转 `#contact`
+
+### 📁 文件变更
+```
+new file:   components/TawktoScript.tsx
+modified:   app/layout.tsx（引入 TawktoScript）
+modified:   components/Header.tsx（CTA → Tawk.to）
+```
+
+---
+
 ## [v1.2.0] 2026-05-01 - 数据资产核心业务全面升级
 
 ### 🔐 安全加固

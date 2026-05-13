@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import TawktoScript from '@/components/TawktoScript'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -24,7 +25,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="zh-CN">
-      <body className={`${inter.className} bg-[#020617] text-white`}>{children}</body>
+      <body className={`${inter.className} bg-[#020617] text-white`}>
+      {children}
+      <TawktoScript />
+    </body>
     </html>
   )
 }
