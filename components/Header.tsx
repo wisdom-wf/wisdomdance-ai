@@ -4,6 +4,15 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 
+// Tawk.to types
+declare global {
+  interface Window {
+    Tawk_API?: {
+      maximize: () => void
+    }
+  }
+}
+
 const navItems = [
   { label: '我的故事', href: '#story' },
   { label: '数据资产', href: '#data-asset' },
@@ -41,60 +50,92 @@ export default function Header() {
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20">
-            {/* Logo - 悬浮大Logo带立体效果 */}
-            <div className="flex items-center" style={{ marginTop: '150px', marginLeft: '50px' }}>
-              <a href="#" className="relative">
-                {/* 圆形容器 */}
-                <div 
-                  className="relative w-32 h-32 rounded-full overflow-visible"
+            {/* Logo - 独立悬浮图层，右移50px */}
+            <div 
+              className="absolute"
+              style={{
+                top: '0',
+                left: '150px',
+                width: '260px',
+                height: '117px',
+                zIndex: 100,
+              }}
+            >
+              {/* 左竖向衬线 */}
+              <div 
+                className="absolute left-0 top-1/2 -translate-y-1/2 transition-all duration-500"
+                style={{
+                  width: '1px',
+                  height: '78px',
+                  background: 'linear-gradient(180deg, transparent 0%, rgba(0,212,255,0.3) 50%, transparent 100%)',
+                }}
+              />
+              
+              {/* 右竖向衬线 */}
+              <div 
+                className="absolute right-0 top-1/2 -translate-y-1/2 transition-all duration-500"
+                style={{
+                  width: '1px',
+                  height: '78px',
+                  background: 'linear-gradient(180deg, transparent 0%, rgba(0,212,255,0.3) 50%, transparent 100%)',
+                }}
+              />
+              
+              {/* Logo主容器 - 16:9比例磨砂玻璃，扩大30% */}
+              <div 
+                className="absolute left-1/2 -translate-x-1/2"
+                style={{
+                  width: '208px',
+                  height: '117px',
+                  borderRadius: '10px',
+                  background: 'rgba(10, 14, 26, 0.85)',
+                  backdropFilter: 'blur(12px)',
+                  border: '0.5px solid rgba(0,212,255,0.15)',
+                  boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
+                }}
+              >
+                {/* Logo图片 - 保持原始16:9比例不变形 */}
+                <img 
+                  src="/logo-transparent.png"
+                  alt="RED MUD Logo"
                   style={{
-                    background: 'radial-gradient(circle at 30% 30%, rgba(30,41,59,0.9) 0%, rgba(15,23,42,0.95) 100%)',
-                    boxShadow: '0 0 0 3px rgba(59,130,246,0.3), 0 0 30px rgba(59,130,246,0.2), 0 10px 40px rgba(0,0,0,0.8), inset 0 2px 20px rgba(255,255,255,0.05)',
-                    transform: 'translateY(-60px)',
-                    zIndex: 100
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                    padding: '8px',
                   }}
-                >
-                  {/* 内层装饰环 */}
-                  <div 
-                    className="absolute inset-2 rounded-full"
-                    style={{
-                      background: 'radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 70%)',
-                      border: '1px solid rgba(59,130,246,0.2)'
-                    }}
-                  />
-                  
-                  {/* Logo图片 */}
-                  <motion.img 
-                    src="/logo-transparent.png"
-                    alt="RED MUD Logo"
-                    className="absolute inset-0 w-full h-full p-3"
-                    style={{
-                      filter: 'drop-shadow(0 4px 10px rgba(0,0,0,0.6)) drop-shadow(0 0 15px rgba(59,130,246,0.2))',
-                    }}
-                    whileHover={{
-                      scale: 1.05,
-                      filter: 'drop-shadow(0 6px 15px rgba(0,0,0,0.8)) drop-shadow(0 0 25px rgba(59,130,246,0.4))'
-                    }}
-                  />
-                  
-                  {/* 高光效果 */}
-                  <div 
-                    className="absolute pointer-events-none"
-                    style={{
-                      top: '15%',
-                      left: '25%',
-                      width: '25%',
-                      height: '15%',
-                      background: 'radial-gradient(ellipse, rgba(255,255,255,0.2) 0%, transparent 70%)',
-                      borderRadius: '50%'
-                    }}
-                  />
-                </div>
-              </a>
+                />
+              </div>
+              
+              {/* 底部左菱形装饰 */}
+              <div 
+                style={{
+                  position: 'absolute',
+                  width: '5px',
+                  height: '5px',
+                  background: 'rgba(0,212,255,0.4)',
+                  transform: 'rotate(45deg)',
+                  bottom: '4px',
+                  left: 'calc(50% - 70px)',
+                }}
+              />
+              
+              {/* 底部右菱形装饰 */}
+              <div 
+                style={{
+                  position: 'absolute',
+                  width: '5px',
+                  height: '5px',
+                  background: 'rgba(0,212,255,0.4)',
+                  transform: 'rotate(45deg)',
+                  bottom: '4px',
+                  left: 'calc(50% + 66px)',
+                }}
+              />
             </div>
 
-            {/* Desktop Navigation */}
-            <nav className="hidden md:flex items-center gap-1">
+            {/* Desktop Navigation - 定位在红框位置 */}
+            <nav className="hidden md:flex items-center gap-1" style={{ marginLeft: '280px' }}>
               {navItems.map((item, index) => (
                 <a
                   key={index}
